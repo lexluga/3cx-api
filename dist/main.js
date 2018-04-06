@@ -12,13 +12,20 @@ const axios_1 = require("axios");
 const axios_cookiejar_support_1 = require("axios-cookiejar-support");
 const tough_cookie_1 = require("tough-cookie");
 const util_1 = require("./util");
+/**
+ * Create logged in HTTP client
+ * @param {string} baseURL
+ * @param {ICredentials} credentials
+ * @returns {Promise<IHttpClient>}
+ */
 function createClient(baseURL, credentials) {
     return __awaiter(this, void 0, void 0, function* () {
         const jar = new tough_cookie_1.CookieJar();
         const http = axios_1.default.create({ baseURL, withCredentials: true, jar });
         axios_cookiejar_support_1.default(http);
-        if ((yield util_1.login(http, credentials)) !== 'AuthSuccess')
+        if ((yield util_1.login(http, credentials)) !== 'AuthSuccess') {
             throw new Error('Invalid credentials');
+        }
         const cookies = jar.getCookiesSync(baseURL);
         const token = cookies.find((x) => x.key === 'XSRF-TOKEN');
         if (token) {

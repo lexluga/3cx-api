@@ -8,6 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Login to 3CX Phone System API
+ * @param {IHttpClient} httpClient
+ * @param {ICredentials} cred
+ * @returns {Promise<string>}
+ */
 function login(httpClient, cred) {
     return __awaiter(this, void 0, void 0, function* () {
         return (yield httpClient.post('/api/login', cred)).data;
