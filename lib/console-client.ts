@@ -1,11 +1,16 @@
 import {IExtension} from './extension';
 import {IGroup} from './group';
-import {IHttpClient} from './http-client';
+import {IHttpClient, IResponse} from './http-client';
 import {IListResponse} from './list-response';
 import {IPhonebookEntry} from './phonebook-entry';
+import {ISystemStatus} from './system-status';
 
 export class ConsoleClient {
     constructor(private readonly httpClient: IHttpClient) {
+    }
+
+    public async getSystemStatus() {
+        return await this.httpClient.get<ISystemStatus>('/api/SystemStatus');
     }
 
     public async getExtensionList() {

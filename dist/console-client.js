@@ -12,6 +12,11 @@ class ConsoleClient {
     constructor(httpClient) {
         this.httpClient = httpClient;
     }
+    getSystemStatus() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.httpClient.get('/api/SystemStatus');
+        });
+    }
     getExtensionList() {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.httpClient.get('/api/ExtensionList');
