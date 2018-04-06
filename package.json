@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "3CX Phone System API",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "create-index": "cti lib",
     "lint": "tslint --project tsconfig.json",
@@ -10,6 +11,10 @@
   },
   "author": "Nikolai Orekhov",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sherlock1982/3cx-api"
+  },
   "devDependencies": {
     "create-ts-index": "^1.0.14",
     "tslint": "^5.9.1",
