@@ -2,14 +2,15 @@
   "name": "@3cx/api",
   "version": "0.0.1",
   "description": "3CX Phone System API",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "create-index": "cti src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "author": "Nikolai Orekhov",
   "license": "ISC",
   "devDependencies": {
-    "create-ts-index": "^1.0.14"
+    "create-ts-index": "^1.0.14",
+    "typescript": "^2.8.1"
   }
 }

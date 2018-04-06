@@ -1,4 +1,4 @@
-import {IHttpClient} from '../http-client';
+import {IHttpClient, IResponse} from '../http-client';
 import {IListResponse} from '../list-response';
 import {IExistingReport} from './existing-report';
 import {IReport} from './report';
