@@ -4,13 +4,19 @@
   "description": "3CX Phone System API",
   "main": "dist/index.js",
   "scripts": {
-    "create-index": "cti src",
+    "create-index": "cti lib",
+    "lint": "tslint --project tsconfig.json",
     "build": "tsc"
   },
   "author": "Nikolai Orekhov",
   "license": "ISC",
   "devDependencies": {
     "create-ts-index": "^1.0.14",
+    "tslint": "^5.9.1",
     "typescript": "^2.8.1"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "axios-cookiejar-support": "^0.3.5"
   }
 }
