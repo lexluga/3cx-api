@@ -1,6 +1,6 @@
 {
   "name": "@3cx/api",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "3CX Phone System API",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
