@@ -17,10 +17,9 @@ Installation:
   
 # Usage
 
-This is a sample on how to get system status information. Please supply your FQDN with port and access credentials.
+This is a sample on how to get system status information. Please supply your FQDN:port and access credentials.
 
     import {createClient, ConsoleClient} from '@3cx/api';
-    import {baseURL, credentials} from '../config';
 
     async function main(){
         const http = await createClient('http://secure.3cx.my:5000', {Username: 'Admin', Password: '############'});
