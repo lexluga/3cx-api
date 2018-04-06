@@ -10,10 +10,10 @@
     "build": "tsc"
   },
   "author": "Nikolai Orekhov",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sherlock1982/3cx-api"
+    "url": "https://github.com/sherlock1982/3cx-api.git"
   },
   "devDependencies": {
     "create-ts-index": "^1.0.14",
@@ -23,5 +23,13 @@
   "dependencies": {
     "axios": "^0.18.0",
     "axios-cookiejar-support": "^0.3.5"
+  },
+  "bugs": {
+    "url": "https://github.com/sherlock1982/3cx-api/issues"
+  },
+  "homepage": "https://github.com/sherlock1982/3cx-api",
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.5.1"
   }
 }
