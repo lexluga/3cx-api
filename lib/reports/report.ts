@@ -8,6 +8,7 @@ import {IMainReportParams} from './main-report-params';
 import {INumberFilter} from './number-filter';
 import {IQueueItem} from './queue-item';
 import {IReportScheduleParams} from './report-schedule-params';
+import {ITrunkFilter} from './trunks-filter';
 import {IUserFilterFilter} from './user-filter';
 
 export type CallState =
@@ -49,4 +50,5 @@ export interface IReport {
     licenseRestricted: boolean;
     ExtensionsFilter: IExtensionFilter;
     CultureName?: string;
+    TrunkListFilter: ITrunkFilter[];
 }
