@@ -1,5 +1,3 @@
-// created from 'create-ts-index'
-
 export * from './date-range-filter';
 export * from './dictionary-item';
 export * from './duration-filter';

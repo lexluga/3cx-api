@@ -3,7 +3,9 @@ import {IFax} from './fax';
 import {IGroup} from './group';
 import {IHttpClient} from './http-client';
 import {IListResponse} from './list-response';
+import {IPhone} from './phone';
 import {IPhonebookEntry} from './phonebook-entry';
+import {IQueueList} from './queue';
 import {ISystemStatus} from './system-status';
 import {IUserInfo} from './userinfo';
 
@@ -64,4 +66,23 @@ export class ConsoleClient {
         const response = await this.httpClient.get<IListResponse<IPhonebookEntry>>('/api/PhoneBookEntryList');
         return response.data.list;
     }
+
+    /**
+     * Get phones
+     * @returns {Promise<IPhone[]>}
+     */
+    public async getPhonesList() {
+        const response = await this.httpClient.get<IListResponse<IPhone>>('/api/PhoneList');
+        return response.data.list;
+    }
+
+    /**
+     * Get Queues
+     * @returns {Promise<IQueueList>}
+     */
+    public async getQueueList() {
+        const response = await this.httpClient.get<IQueueList>('/api/QueueList');
+        return response.data.list;
+    }
+
 }

@@ -1,5 +1,3 @@
-// created from 'create-ts-index'
-
 export * from './dashboard';
 export * from './reports';
 export * from './settings';
