@@ -3,6 +3,10 @@
     "tslint:recommended"
   ],
   "rules": {
+    "no-consecutive-blank-lines": [false],
+    "no-trailing-whitespace": false,
+    "max-line-length": [400],
+    "ordered-imports": false,
     "quotemark": [
       true,
       "single",
