@@ -5,6 +5,7 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./dashboard"));
+__export(require("./phonebook"));
 __export(require("./reports"));
 __export(require("./settings"));
 __export(require("./console-client"));

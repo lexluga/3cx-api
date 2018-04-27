@@ -42,4 +42,5 @@ export interface IReport {
     ExtensionsFilter: IExtensionFilter;
     CultureName?: string;
     TrunkListFilter: ITrunkFilter[];
+    ExcludeCallsWaitingLess: IExcludeCallsAbandoned;
 }

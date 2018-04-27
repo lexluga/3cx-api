@@ -1,7 +1,7 @@
 export interface IEmailTemplate {
-    Body: string;
-    From: string;
-    isDefault: boolean;
-    Subject: string;
+    From?: string;
+    Subject?: string;
+    Body?: string;
     templatePath: string;
+    IsDefault: boolean;
 }

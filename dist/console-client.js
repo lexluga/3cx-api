@@ -84,12 +84,163 @@ class ConsoleClient {
     }
     /**
      * Get Queues
-     * @returns {Promise<IQueueList>}
+     * @returns {Promise<IQueue>}
      */
     getQueueList() {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.httpClient.get('/api/QueueList');
             return response.data.list;
+        });
+    }
+    /**
+     * Get Chats
+     * @returns {Promise<IChats>}
+     */
+    getChatsList(count, from) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.get(`/api/Chat/messages?count=${count}&filter=&from=${from}`);
+            return response.data;
+        });
+    }
+    /**
+     * Get Trunk List
+     * @returns {Promise<ITrunks>}
+     */
+    getTrunkList() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.get(`/api/TrunkList`);
+            return response.data.list;
+        });
+    }
+    /**
+     * Get Inbound List
+     * @returns {Promise<IInboundRule>}
+     */
+    getInboundRuleList() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.get(`/api/InboundRulesList`);
+            return response.data.list;
+        });
+    }
+    /**
+     * Get Outbound List
+     * @returns {Promise<IOutboundRule>}
+     */
+    getOutboundRuleList() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.get(`/api/OutboundRuleList`);
+            return response.data.list;
+        });
+    }
+    /**
+     * Get IVR List
+     * @returns {Promise<IIVR>}
+     */
+    getIVRList() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.get(`/api/IVRList`);
+            return response.data.list;
+        });
+    }
+    /**
+     * Get Ring Group List
+     * @returns {Promise<IRingGroup>}
+     */
+    getRingGroupList() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.get(`/api/RingGroupList`);
+            return response.data.list;
+        });
+    }
+    /**
+     * Get FAX Extension List
+     * @returns {Promise<IFaxExtension>}
+     */
+    getFaxExtensionList() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.get(`/api/FaxList`);
+            return response.data.list;
+        });
+    }
+    /**
+     * Get FXS/Dect List
+     * @returns {Promise<IFxsDect>}
+     */
+    getFXSDectList() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.get(`/api/FxsList`);
+            return response.data;
+        });
+    }
+    /**
+     * Get Hotdesking List
+     * @returns {Promise<IFxsDect>}
+     */
+    getHotdeskingList() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.get(`/api/HotdeskingList`);
+            return response.data.list;
+        });
+    }
+    /**
+     * Get Recordings List
+     * @param {IRecordingParameters}
+     * @returns {Promise<IRecordings>}
+     */
+    getRecordingsList(recordingParams) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const url = `/api/RecordingList?count=${recordingParams.count}&dateTimeParts=${recordingParams.dateTimeParts}&filter=${recordingParams.filter}&from=${recordingParams.from}&onlyTime=${recordingParams.onlyTime}`;
+            const response = yield this.httpClient.get(url);
+            return response.data;
+        });
+    }
+    /**
+     * Get Backup List
+     * @returns {Promise<IBackup>}
+     */
+    getBackupList() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.get(`/api/BackupAndRestoreList`);
+            return response.data.list;
+        });
+    }
+    /**
+     * Post New Backup List
+     * @param {INewBackup}
+     */
+    newBackup(backupOptions) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.httpClient.post(`/api/BackupAndRestoreList/backup`, backupOptions);
+        });
+    }
+    /**
+     * Post Delete Backup List
+     * @param {string}
+     */
+    deleteBackup(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.httpClient.post(`/api/BackupAndRestoreList/delete`, { Ids: [id] });
+        });
+    }
+    /**
+     * Get Call Log List
+     * @param {ICallLogsParameters}
+     * @returns {Promise<ICallLogs>}
+     */
+    getCallLogList(filterParams) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const url = `/api/CallLog?TimeZoneName=${filterParams.TimeZoneName}&callState=${filterParams.callState}&dateRangeType=${filterParams.dateRangeType}&fromFilter=${filterParams.fromFilter}&fromFilterType=${filterParams.fromFilterType}&numberOfRows=${filterParams.numberOfRows}&searchFilter=${filterParams.searchFilter}&startRow=${filterParams.startRow}&toFilter=${filterParams.toFilter}&toFilterType=${filterParams.toFilterType}`;
+            const response = yield this.httpClient.get(url);
+            return response.data;
+        });
+    }
+    /**
+     * Delete Chat
+     * @param {string}
+     */
+    deleteChat(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.httpClient.post(`/api/Chat/delete`, [id]);
         });
     }
 }
