@@ -223,6 +223,37 @@ class SettingsClient {
         });
     }
     /**
+     * Get List of System Prompts
+     * returns {Promise<IListResponse<ISystemPromptSets>>}
+     */
+    getSystemPromptsList() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.get(`/api/SystemPromptList/promptSets`);
+            return response.data.list;
+        });
+    }
+    /**
+     * Get List of System Prompts
+     * @param {string}
+     * returns {Promise<IListResponse<IPrompts>>}
+     */
+    setActivePromptSet(name) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.post(`/api/SystemPromptList/setActivePromptSet`, { Name: name });
+            return response.data.list;
+        });
+    }
+    /**
+     * POST Delete System Prompt
+     * @param {string}
+     * returns {Promise<ISystemPrompts>}
+     */
+    deleteSystemPrompt(namePromptSet) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.httpClient.post(`/api/SystemPromptList/deletePromptSet`, { Name: namePromptSet });
+        });
+    }
+    /**
      * Get Phone Template
      * @returns {Promise<IPhoneTemplates>}
      */

@@ -243,5 +243,16 @@ class ConsoleClient {
             yield this.httpClient.post(`/api/Chat/delete`, [id]);
         });
     }
+    /**
+     * POST Download Update
+     * @param {IUpdateParameters}
+     * returns {Promise<IUpdateParameters>}
+     */
+    getUpdate(updates) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.post(`/api/updateChecker/update`, updates);
+            return response.data.Updates;
+        });
+    }
 }
 exports.ConsoleClient = ConsoleClient;

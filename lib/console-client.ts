@@ -19,9 +19,10 @@ import {IBackup} from './backup/backup';
 import {ICallLogs} from './call-logs/call-logs';
 import {IRecordings, IRecordingParameters} from './recording';
 import {ICallLogsParameters} from './call-logs/call-log-parameters';
-import {IProperty} from './common';
 import {INewBackup} from './backup/newBackup';
 import {IRingGroup} from './ring-group';
+import {IUpdateParameters} from './updates/update-parameters';
+import {IUpdates} from './updates/updates';
 
 export class ConsoleClient {
     constructor(private readonly httpClient: IHttpClient) {
@@ -234,6 +235,17 @@ export class ConsoleClient {
      */
     public async deleteChat(id: string) {
         await this.httpClient.post(`/api/Chat/delete`, [id]);
+    }
+
+
+    /**
+     * POST Download Update
+     * @param {IUpdateParameters}
+     * returns {Promise<IUpdateParameters>}
+     */
+    public async getUpdate(updates: IUpdateParameters[]) {
+        const response = await this.httpClient.post<IUpdates>(`/api/updateChecker/update`, updates);
+        return response.data.Updates;
     }
 
 }

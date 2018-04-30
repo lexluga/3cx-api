@@ -6,6 +6,7 @@ export * from './dashboard';
 export * from './phonebook';
 export * from './reports';
 export * from './settings';
+export * from './updates';
 export * from './active-object-response';
 export * from './chats';
 export * from './common';

@@ -23,6 +23,9 @@ import {IHotelModule} from './hotel-module';
 import {ICopyTemplate} from './templates/copy-template';
 import {ISaveTemplate} from './templates/saveTemplate';
 import {IResponseSaveTemplate} from './templates/response-save-template';
+import {ISystemPrompts} from './system-prompts/system-prompts';
+import {ISystemPromptSets} from './system-prompts/system-promptsets';
+import {IPrompts} from './system-prompts/prompts';
 
 export class SettingsClient {
     constructor(private readonly httpClient: IHttpClient) {
@@ -218,6 +221,34 @@ export class SettingsClient {
     }
 
     /**
+     * Get List of System Prompts
+     * returns {Promise<IListResponse<ISystemPromptSets>>}
+     */
+    public async getSystemPromptsList() {
+        const response = await this.httpClient.get<IListResponse<ISystemPromptSets>>(`/api/SystemPromptList/promptSets`);
+        return response.data.list;
+    }
+
+    /**
+     * Get List of System Prompts
+     * @param {string}
+     * returns {Promise<IListResponse<IPrompts>>}
+     */
+    public async setActivePromptSet(name: string) {
+        const response = await this.httpClient.post<IListResponse<IPrompts>>(`/api/SystemPromptList/setActivePromptSet`, {Name : name});
+        return response.data.list;
+    }
+
+    /**
+     * POST Delete System Prompt
+     * @param {string}
+     * returns {Promise<ISystemPrompts>}
+     */
+    public async deleteSystemPrompt(namePromptSet: string) {
+        await this.httpClient.post<ISystemPrompts>(`/api/SystemPromptList/deletePromptSet`, {Name: namePromptSet});
+    }
+
+    /**
      * Get Phone Template
      * @returns {Promise<IPhoneTemplates>}
      */
@@ -270,6 +301,7 @@ export class SettingsClient {
         const response = await this.httpClient.post<IActiveObjectResponse<IHotelModule>>(`/api/Settings/HotelServices`, {});
         return response.data.ActiveObject;
     }
+
 
 }
 

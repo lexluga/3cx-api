@@ -22,6 +22,8 @@ import { IHotelModule } from './hotel-module';
 import { ICopyTemplate } from './templates/copy-template';
 import { ISaveTemplate } from './templates/saveTemplate';
 import { IResponseSaveTemplate } from './templates/response-save-template';
+import { ISystemPromptSets } from './system-prompts/system-promptsets';
+import { IPrompts } from './system-prompts/prompts';
 export declare class SettingsClient {
     private readonly httpClient;
     constructor(httpClient: IHttpClient);
@@ -132,6 +134,23 @@ export declare class SettingsClient {
      * @returns {Promise<IActiveObjectResponse<ISecurity>>}
      */
     getSecuritySettings(): Promise<ISecurity>;
+    /**
+     * Get List of System Prompts
+     * returns {Promise<IListResponse<ISystemPromptSets>>}
+     */
+    getSystemPromptsList(): Promise<ISystemPromptSets[]>;
+    /**
+     * Get List of System Prompts
+     * @param {string}
+     * returns {Promise<IListResponse<IPrompts>>}
+     */
+    setActivePromptSet(name: string): Promise<IPrompts[]>;
+    /**
+     * POST Delete System Prompt
+     * @param {string}
+     * returns {Promise<ISystemPrompts>}
+     */
+    deleteSystemPrompt(namePromptSet: string): Promise<void>;
     /**
      * Get Phone Template
      * @returns {Promise<IPhoneTemplates>}
