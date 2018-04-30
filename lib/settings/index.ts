@@ -10,7 +10,6 @@ export * from './email-template';
 export * from './fax-server';
 export * from './hotel-module';
 export * from './paramaters';
-export * from './phone-template';
 export * from './security';
 export * from './settings-func';
 export * from './tcx-client';

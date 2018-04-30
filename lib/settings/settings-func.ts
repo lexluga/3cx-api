@@ -1,6 +1,6 @@
 import {IHttpClient} from '../http-client';
 import {IEmailTemplate} from './email-template';
-import {IPhoneTemplates} from './phone-template';
+import {IPhoneTemplates} from './templates/phone-template';
 import {IDialCodes} from './dial-codes';
 import {IActiveObjectResponse} from '../active-object-response';
 import {ILicense} from './License';
@@ -20,6 +20,9 @@ import {IPBX, IEmergencyNumber} from './pbx';
 import {ISecurity} from './security';
 import {IVoicemail} from './voicemail';
 import {IHotelModule} from './hotel-module';
+import {ICopyTemplate} from './templates/copy-template';
+import {ISaveTemplate} from './templates/saveTemplate';
+import {IResponseSaveTemplate} from './templates/response-save-template';
 
 export class SettingsClient {
     constructor(private readonly httpClient: IHttpClient) {
@@ -221,6 +224,33 @@ export class SettingsClient {
     public async getPhoneTemplate(filename: string) {
         const response = await this.httpClient.get<IPhoneTemplates>(`/api/PhoneTemplates/templateByName?filename=${filename}`);
         return response.data;
+    }
+
+    /**
+     * POST Copy Phone Template
+     * @returns {Promise<IListResponse<string>>}
+     */
+    public async copyPhoneTemplate(newTemplate: ICopyTemplate) {
+        const response = await this.httpClient.post<IListResponse<string>>(`/api/PhoneTemplates/copy`, newTemplate);
+        return response.data.list;
+    }
+
+    /**
+     * POST Save Phone Template
+     * @returns {Promise<IResponseSaveTemplate>}
+     */
+    public async savePhoneTemplate(saveTemplate: ISaveTemplate) {
+        const response = await this.httpClient.post<IResponseSaveTemplate>(`/api/PhoneTemplates/save`, saveTemplate);
+        return response.data;
+    }
+
+    /**
+     * POST Delete Phone Template
+     * @returns {Promise<IListResponse<string>>}
+     */
+    public async deletePhoneTemplate(templateName: string) {
+        const response = await this.httpClient.post<IListResponse<string>>(`/api/PhoneTemplates/delete`, {filename: templateName});
+        return response.data.list;
     }
 
     /**

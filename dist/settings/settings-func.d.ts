@@ -1,6 +1,6 @@
 import { IHttpClient } from '../http-client';
 import { IEmailTemplate } from './email-template';
-import { IPhoneTemplates } from './phone-template';
+import { IPhoneTemplates } from './templates/phone-template';
 import { IDialCodes } from './dial-codes';
 import { IActiveObjectResponse } from '../active-object-response';
 import { ILicense } from './License';
@@ -19,6 +19,9 @@ import { IPBX, IEmergencyNumber } from './pbx';
 import { ISecurity } from './security';
 import { IVoicemail } from './voicemail';
 import { IHotelModule } from './hotel-module';
+import { ICopyTemplate } from './templates/copy-template';
+import { ISaveTemplate } from './templates/saveTemplate';
+import { IResponseSaveTemplate } from './templates/response-save-template';
 export declare class SettingsClient {
     private readonly httpClient;
     constructor(httpClient: IHttpClient);
@@ -134,6 +137,21 @@ export declare class SettingsClient {
      * @returns {Promise<IPhoneTemplates>}
      */
     getPhoneTemplate(filename: string): Promise<IPhoneTemplates>;
+    /**
+     * POST Copy Phone Template
+     * @returns {Promise<IListResponse<string>>}
+     */
+    copyPhoneTemplate(newTemplate: ICopyTemplate): Promise<string[]>;
+    /**
+     * POST Save Phone Template
+     * @returns {Promise<IResponseSaveTemplate>}
+     */
+    savePhoneTemplate(saveTemplate: ISaveTemplate): Promise<IResponseSaveTemplate>;
+    /**
+     * POST Delete Phone Template
+     * @returns {Promise<IListResponse<string>>}
+     */
+    deletePhoneTemplate(templateName: string): Promise<string[]>;
     /**
      * Post Voicemail Configurations
      * @returns {Promise<IActiveObjectResponse<IVoicemail>>}

@@ -233,6 +233,36 @@ class SettingsClient {
         });
     }
     /**
+     * POST Copy Phone Template
+     * @returns {Promise<IListResponse<string>>}
+     */
+    copyPhoneTemplate(newTemplate) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.post(`/api/PhoneTemplates/copy`, newTemplate);
+            return response.data.list;
+        });
+    }
+    /**
+     * POST Save Phone Template
+     * @returns {Promise<IResponseSaveTemplate>}
+     */
+    savePhoneTemplate(saveTemplate) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.post(`/api/PhoneTemplates/save`, saveTemplate);
+            return response.data;
+        });
+    }
+    /**
+     * POST Delete Phone Template
+     * @returns {Promise<IListResponse<string>>}
+     */
+    deletePhoneTemplate(templateName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.httpClient.post(`/api/PhoneTemplates/delete`, { filename: templateName });
+            return response.data.list;
+        });
+    }
+    /**
      * Post Voicemail Configurations
      * @returns {Promise<IActiveObjectResponse<IVoicemail>>}
      */
