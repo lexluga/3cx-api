@@ -93,6 +93,37 @@ class SettingsClient {
         });
     }
     /**
+     * Post Download Server Side CRM
+     * @param {IUpdateParameters}
+     * @returns {Promise<IUpdates>}
+     */
+    downloadServerSideCRM(crmUpdate) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.httpClient.post(`/api/updateChecker/update`, crmUpdate);
+            return result.data;
+        });
+    }
+    /**
+     * Post Delete Server Side CRM
+     * @returns {Promise<string>}
+     */
+    deleteServerSideCRM(crmName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.httpClient.post(`/api/CrmList/deleteServerCrm?crmName=${crmName}`, {});
+            return result.data;
+        });
+    }
+    /**
+     * Get Server Side CRM Updates
+     * @returns {Promise<IUpdates>}
+     */
+    getServerSideCRMUpdates(crmName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.httpClient.get(`/api/crm/serverCrmUpdates`);
+            return result.data;
+        });
+    }
+    /**
      * Get Client Side CRM Configurations
      * @returns {Promise<IActiveObjectResponse<IClientSideCRMIntegration>>}
      */
@@ -100,6 +131,27 @@ class SettingsClient {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield this.httpClient.get(`/api/crm/client`);
             return result.data.list;
+        });
+    }
+    /**
+     * Post Download Client Side CRM
+     * @param {IUpdateParameters}
+     * @returns {Promise<IUpdates>}
+     */
+    downloadClientSideCRM(crmUpdate) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.httpClient.post(`/api/updateChecker/update`, crmUpdate);
+            return result.data;
+        });
+    }
+    /**
+     * Post Delete Client Side CRM
+     * @param {clientCrm}
+     * @returns {}
+     */
+    deleteClientSideCRM(clientCrm) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.httpClient.post(`/api/crm/delete`, { Name: clientCrm });
         });
     }
     /**
@@ -140,6 +192,14 @@ class SettingsClient {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.httpClient.get(`/api/emailTemplate?templatePath=${template}`);
             return response.data;
+        });
+    }
+    /**
+     * POST Test Email Server
+     */
+    testEmailServer() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.httpClient.post(`/api/Settings/testEmail`, 1);
         });
     }
     /**

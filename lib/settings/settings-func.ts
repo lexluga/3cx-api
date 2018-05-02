@@ -26,6 +26,7 @@ import {IResponseSaveTemplate} from './templates/response-save-template';
 import {ISystemPrompts} from './system-prompts/system-prompts';
 import {ISystemPromptSets} from './system-prompts/system-promptsets';
 import {IPrompts} from './system-prompts/prompts';
+import {IUpdateParameters, IUpdates} from '../updates';
 
 export class SettingsClient {
     constructor(private readonly httpClient: IHttpClient) {
@@ -104,12 +105,59 @@ export class SettingsClient {
     }
 
     /**
+     * Post Download Server Side CRM
+     * @param {IUpdateParameters}
+     * @returns {Promise<IUpdates>}
+     */
+    public async downloadServerSideCRM(crmUpdate: IUpdateParameters[]) {
+        const result = await this.httpClient.post<IUpdates>(`/api/updateChecker/update`, crmUpdate);
+        return result.data;
+    }
+
+    /**
+     * Post Delete Server Side CRM
+     * @returns {Promise<string>}
+     */
+    public async deleteServerSideCRM(crmName: string) {
+        const result = await this.httpClient.post<{deleted: boolean}>(`/api/CrmList/deleteServerCrm?crmName=${crmName}`, {});
+        return result.data;
+    }
+
+    /**
+     * Get Server Side CRM Updates
+     * @returns {Promise<IUpdates>}
+     */
+    public async getServerSideCRMUpdates(crmName: string) {
+        const result = await this.httpClient.get<IUpdates>(`/api/crm/serverCrmUpdates`);
+        return result.data;
+    }
+
+    /**
      * Get Client Side CRM Configurations
      * @returns {Promise<IActiveObjectResponse<IClientSideCRMIntegration>>}
      */
     public async getClientSideCRMSettings() {
         const result = await this.httpClient.get<IListResponse<IClientSideCRMIntegration>>(`/api/crm/client`);
         return result.data.list;
+    }
+
+    /**
+     * Post Download Client Side CRM
+     * @param {IUpdateParameters}
+     * @returns {Promise<IUpdates>}
+     */
+    public async downloadClientSideCRM(crmUpdate: IUpdateParameters[]) {
+        const result = await this.httpClient.post<IUpdates>(`/api/updateChecker/update`, crmUpdate);
+        return result.data;
+    }
+
+    /**
+     * Post Delete Client Side CRM
+     * @param {clientCrm}
+     * @returns {}
+     */
+    public async deleteClientSideCRM(clientCrm: string) {
+        await this.httpClient.post(`/api/crm/delete`, {Name: clientCrm});
     }
 
     /**
@@ -146,6 +194,13 @@ export class SettingsClient {
     public async getEmailTemplate(template: string) {
         const response = await this.httpClient.get<IEmailTemplate>(`/api/emailTemplate?templatePath=${template}`);
         return response.data;
+    }
+
+    /**
+     * POST Test Email Server
+     */
+    public async testEmailServer() {
+        await this.httpClient.post<{}>(`/api/Settings/testEmail`, 1);
     }
 
     /**
@@ -235,7 +290,7 @@ export class SettingsClient {
      * returns {Promise<IListResponse<IPrompts>>}
      */
     public async setActivePromptSet(name: string) {
-        const response = await this.httpClient.post<IListResponse<IPrompts>>(`/api/SystemPromptList/setActivePromptSet`, {Name : name});
+        const response = await this.httpClient.post<IListResponse<IPrompts>>(`/api/SystemPromptList/setActivePromptSet`, {Name: name});
         return response.data.list;
     }
 

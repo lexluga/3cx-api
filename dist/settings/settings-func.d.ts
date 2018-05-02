@@ -24,6 +24,7 @@ import { ISaveTemplate } from './templates/saveTemplate';
 import { IResponseSaveTemplate } from './templates/response-save-template';
 import { ISystemPromptSets } from './system-prompts/system-promptsets';
 import { IPrompts } from './system-prompts/prompts';
+import { IUpdateParameters, IUpdates } from '../updates';
 export declare class SettingsClient {
     private readonly httpClient;
     constructor(httpClient: IHttpClient);
@@ -69,10 +70,40 @@ export declare class SettingsClient {
      */
     getServerSideCRMSettings(): Promise<IServerSideCRMIntegration>;
     /**
+     * Post Download Server Side CRM
+     * @param {IUpdateParameters}
+     * @returns {Promise<IUpdates>}
+     */
+    downloadServerSideCRM(crmUpdate: IUpdateParameters[]): Promise<IUpdates>;
+    /**
+     * Post Delete Server Side CRM
+     * @returns {Promise<string>}
+     */
+    deleteServerSideCRM(crmName: string): Promise<{
+        deleted: boolean;
+    }>;
+    /**
+     * Get Server Side CRM Updates
+     * @returns {Promise<IUpdates>}
+     */
+    getServerSideCRMUpdates(crmName: string): Promise<IUpdates>;
+    /**
      * Get Client Side CRM Configurations
      * @returns {Promise<IActiveObjectResponse<IClientSideCRMIntegration>>}
      */
     getClientSideCRMSettings(): Promise<IClientSideCRMIntegration[]>;
+    /**
+     * Post Download Client Side CRM
+     * @param {IUpdateParameters}
+     * @returns {Promise<IUpdates>}
+     */
+    downloadClientSideCRM(crmUpdate: IUpdateParameters[]): Promise<IUpdates>;
+    /**
+     * Post Delete Client Side CRM
+     * @param {clientCrm}
+     * @returns {}
+     */
+    deleteClientSideCRM(clientCrm: string): Promise<void>;
     /**
      * Post Dial Codes Settings
      * @returns {Promise<IActiveObjectResponse<IDialCodes>>}
@@ -94,6 +125,10 @@ export declare class SettingsClient {
      * @returns {Promise<IEmailTemplate>}
      */
     getEmailTemplate(template: string): Promise<IEmailTemplate>;
+    /**
+     * POST Test Email Server
+     */
+    testEmailServer(): Promise<void>;
     /**
      * Post Fax Server Configurations
      * @returns {Promise<IActiveObjectResponse<IFaxServer>>}
